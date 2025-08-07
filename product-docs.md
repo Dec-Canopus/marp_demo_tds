@@ -18,6 +18,14 @@ headingDivider: 2
 *Your Email: [21f3001973@ds.study.iitm.ac.in](mailto:21f3001973@ds.study.iitm.ac.in)*
 ---
 
+$$
+E = mc^2
+$$
+
+$$
+\sum_{k=1}^{n}k^2 = \frac{n(n+1)(2n+1)}{6}
+$$
+
 <!-- _class: default-slide -->
 # Agenda
 
