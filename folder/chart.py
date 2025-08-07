@@ -61,7 +61,8 @@ sns.set_style("whitegrid") # Provides a clean grid background
 sns.set_context("talk", font_scale=0.9) # "talk" context is suitable for presentations
 
 # Create the figure with exact dimensions (512x512 pixels at 64 DPI)
-# 512 pixels / 64 dpi = 8 inches
+# Calculation: 512 pixels / 64 dpi = 8 inches.
+# The figsize determines the *canvas* size.
 plt.figure(figsize=(8, 8))
 
 # Create the lineplot
@@ -94,21 +95,19 @@ plt.xticks(df['Month'].unique(), months_abbr, rotation=45, ha='right')
 # Add grid lines for easier readability
 plt.grid(True, linestyle='--', alpha=0.6)
 
-# Improve legend placement: outside the plot area to avoid obstructing data
-plt.legend(title="Customer Segment", bbox_to_anchor=(1.05, 1), loc='upper left', borderaxespad=0.)
+# Legend placement: Place inside the plot to guarantee it fits the fixed canvas size.
+# loc='upper left' is generally safe and prevents legend from being cut off.
+plt.legend(title="Customer Segment", loc='upper left')
 
-# Adjust plot layout to make space for the legend, ensuring it fits within the figure.
-# The 'rect' argument adjusts the normalized coordinates of the plot area
-# to leave room on the right for the legend when bbox_to_anchor is used.
-plt.tight_layout(rect=[0, 0, 0.85, 1])
+# IMPORTANT: Do NOT use plt.tight_layout() or bbox_inches='tight' in savefig
+# when exact pixel dimensions are required, as they can alter the canvas size.
+# The figure size (figsize) and dpi directly control the output pixel dimensions.
 
 # --- 3. Save Chart ---
 # Save the figure as a PNG with the specified DPI (64 DPI for 512x512 pixels)
-# bbox_inches='tight' attempts to include all elements (labels, title, legend)
-# within the saved image, potentially adding minimal padding beyond the core figure size,
-# but it's crucial for avoiding truncation of text.
-plt.savefig('chart.png', dpi=64, bbox_inches='tight')
+# Removing 'bbox_inches='tight'' is crucial for fixed dimensions.
+plt.savefig('chart.png', dpi=64)
 
 plt.close() # Close the plot to free up memory
 
-print("chart.png generated successfully.")
+print("chart.png generated successfully. Please verify its dimensions.")
