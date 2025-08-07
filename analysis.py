@@ -17,7 +17,7 @@ def _():
     import matplotlib.pyplot as plt
     return mo, np, plt
 
-
+depends
 @app.cell
 def _(mo):
     # Create a slider to select the number of points
