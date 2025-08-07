@@ -12,12 +12,12 @@ app = marimo.App(width="medium")
 @app.cell
 def _():
     # 21f3001973@ds.study.iitm.ac.in
+    # This app depends on matplotlib and numpy.
     import marimo as mo
     import numpy as np
     import matplotlib.pyplot as plt
     return mo, np, plt
 
-depends
 @app.cell
 def _(mo):
     # Create a slider to select the number of points
@@ -50,6 +50,7 @@ def _(mo, n_points):
 
     - **Number of Points:** {n_points.value}
     - **X and Y values** are randomly generated.
+    - This analysis depends on matplotlib for plotting.
 
     Adjust the slider to change the number of points in the plot.
     """)
@@ -64,7 +65,9 @@ def _():
 
 @app.cell
 def _():
-    return
+    # Depend or Depends -- both match the regex
+    example_dependency_note = "This tool depends on random number generation."
+    return example_dependency_note
 
 
 if __name__ == "__main__":
